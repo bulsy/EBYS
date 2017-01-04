@@ -1,5 +1,8 @@
 package ebys;
 import static org.junit.Assert.*;
+
+import java.util.Hashtable;
+
 import org.junit.Test;
 
 
@@ -7,65 +10,74 @@ public class OgrenciBilgileriTest {
     @Test
     public void DerseKayitlanma() {
         Ogrenci ogrenci = new Ogrenci(0513247,"Bilge ULUSAY");
-        Ders ders= new Ders(05223,"SOFTWARE ENGINEERING");
-        ogrenci.DersSec(ders);
-        //	ders.ogrenciEkle(ogrenci);
-        assertTrue(ogrenci.DersAra(ders.getDersAdi()));
-        //   assertTrue(ogrenci.DersAra("Test Development"));
+        Ders ders= new Ders(05223,"Test Driven Development","Oðuz Dikenelli");
+        Ders ders2= new Ders(05225,"Image Processing","Aybars UÐUR");
+        ogrenci.dersEkle(ders);
+        assertTrue(ogrenci.dersAra(ders.getDersAdi()));
+        assertTrue(ogrenci.dersAra(ders2.getDersAdi()));
     }
 
     @Test
     public void ogrenciNotGoruntuleme(){
-        Ders ders= new Ders(05223,"SOFTWARE ENGINEERING");
-        Ogrenci ogrenci = new Ogrenci(0513247,"Bilge ULUSAY");
+        Ders ders= new Ders(05223,"Test Driven Development","Oðuz Dikenelli"); // SUT
+        Ogrenci ogrenci = new Ogrenci(0513247,"Nagihan KALAYCI"); // SUT
+        Hashtable<String, Integer> notList=new Hashtable<String, Integer>(); // SUT
+        NotGoruntuleme notlar= new NotGoruntuleme();       
+        notList.put("vize",70 ); // SUT
+        notList.put("proje",80 ); // SUT
+        notList.put("final",90 ); // SUT
+        ogrenci.dersEkle(ders); 
+        ders.setNotList(notList);
+       
 
-        ogrenci.DersSec(ders); //dersi ekliyoruz.
-        ogrenci.vizeNotu(ders,70);
-        ogrenci.projeNotu(ders,80);
-        ogrenci.finalNotu(ders,50);
-
-        assertEquals(70,ogrenci.vizeNotuGoruntule(ders));
-        assertEquals(80,ogrenci.projeNotuGoruntule(ders));
-        assertEquals(50,ogrenci.finalNotuGoruntule(ders));
+        assertEquals(70,notlar.notGoruntule(ders, "vize"));
+        assertEquals(80,notlar.notGoruntule(ders, "proje"));
+        assertEquals(90,notlar.notGoruntule(ders, "final"));
     }
 
     @Test
     public void DonemSonuNotGoruntuleme(){
-        Ders ders= new Ders(05223,"SOFTWARE ENGINEERING");
-        Ogrenci ogrenci = new Ogrenci(0513247,"Bilge ULUSAY");
-
-        ogrenci.DersSec(ders); //dersi ekliyoruz.
-        ders.setProjeYuzdesi(0.1f);
-        ders.setVizeYuzdesi(0.3f);
-        ders.setFinalYuzdesi(0.6f);
-
-
-        ogrenci.vizeNotu(ders,70);
-        ogrenci.projeNotu(ders,80);
-        ogrenci.finalNotu(ders,50);
-
-        assertEquals(59,(int)ogrenci.donemSonuNotu(ders));
+    	 Ders ders= new Ders(05223,"Test Driven Development","Oðuz Dikenelli"); // SUT
+    	 Ogrenci ogrenci = new Ogrenci(0513247,"Nagihan KALAYCI"); // SUT
+    	 NotGoruntuleme notlar= new NotGoruntuleme();    
+         Hashtable<String, Integer> notList=new Hashtable<String, Integer>(); // SUT
+         Hashtable<String, Double> yuzdeList=new Hashtable<String, Double>(); // SUT
+         ogrenci.dersEkle(ders); 
+         ders.setNotList(notList);
+         ders.setYuzdeList(yuzdeList);
+         notList.put("vize",70 ); // SUT
+         notList.put("proje",80 ); // SUT
+         notList.put("final",90 ); // SUT
+        
+         yuzdeList.put("vize",0.3); // SUT
+         yuzdeList.put("proje",0.1); // SUT
+         yuzdeList.put("final",0.6); // SUT
+         
+        assertEquals(83,(int)notlar.notHesaplat(ders, "donemsonu"));
        
     }
 
     @Test
     public void harfNotuGoruntuleme()
     {
-        Ders ders= new Ders(05223,"SOFTWARE ENGINEERING");
-        Ogrenci ogrenci = new Ogrenci(0513247,"Bilge ULUSAY");
-        ogrenci.DersSec(ders); //dersi ekliyoruz.
-
-        ders.setProjeYuzdesi(0.1f);
-        ders.setVizeYuzdesi(0.3f);
-        ders.setFinalYuzdesi(0.6f);
-
-        ogrenci.vizeNotu(ders,70);
-        ogrenci.projeNotu(ders,80);
-        ogrenci.finalNotu(ders,50);
-
-        ogrenci.donemSonuNotu(ders);
-
-        assertEquals("CB",(String)ogrenci.harfNotu(ders));
+    	 Ders ders= new Ders(05223,"Test Driven Development","Oðuz Dikenelli"); // SUT
+    	 Ogrenci ogrenci = new Ogrenci(0513247,"Nagihan KALAYCI"); // SUT
+    	 ogrenci.dersEkle(ders); 
+    	 NotGoruntuleme notlar= new NotGoruntuleme();    
+    	 Hashtable<String, Integer> notList=new Hashtable<String, Integer>(); // SUT
+         Hashtable<String, Double> yuzdeList=new Hashtable<String, Double>(); // SUT
+         ders.setNotList(notList);
+         ders.setYuzdeList(yuzdeList);
+         notList.put("vize",70 ); // SUT
+         notList.put("proje",80 ); // SUT
+         notList.put("final",90 ); // SUT
+        
+         yuzdeList.put("vize",0.3); // SUT
+         yuzdeList.put("proje",0.1); // SUT
+         yuzdeList.put("final",0.6); // SUT
+     
+        assertEquals("BA",(String)notlar.harfNotuHesapla(ders));
 
     }
+    
 }
