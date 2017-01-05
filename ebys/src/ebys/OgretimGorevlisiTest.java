@@ -3,16 +3,24 @@ import static org.junit.Assert.*;
 
 import java.util.Hashtable;
 
+import org.junit.Before;
 import org.junit.Test;
 
 public class OgretimGorevlisiTest {
+	
+	 private Ders ders;
+	 private Ogretmen ogretmen;
+	 private Hashtable<String, Double> yuzdeList;
 
+	@Before
+	public void SetUp(){
+		ders= new Ders(05223,"Test Driven Development","Oðuz Dikenelli");
+		ogretmen = new Ogretmen(551664,"Oðuz DÝKENELLÝ");
+		yuzdeList=new Hashtable<String, Double>();
+	}
        @Test
         public void YuzdeBelirleme() {
-            Ogretmen ogretmen=new Ogretmen(0107,"Oðuz Dikenelli");
-            Ders ders= new Ders(05223,"Test Driven Development","Oðuz Dikenelli"); // SUT
-            Ogrenci ogrenci = new Ogrenci(0513247,"Bilge ULUSAY");
-            Hashtable<String, Double> yuzdeList=new Hashtable<String, Double>(); // SUT
+            
             ogretmen.verilenDers(ders);
             ogretmen.dersProjesi(ders,false,0);
             ders.setYuzdeList(yuzdeList);
