@@ -1,13 +1,14 @@
-package ebys;
-import java.util.*;
+import java.util.LinkedList;
+import java.util.List;
+
 
 public class Ogrenci {
-  
-	private int ogrenciNo;
+
+    private int ogrenciNo;
     private String adSoyad;
-    
-    LinkedList<Ders> dersList;
-    
+
+    List<Ders> dersList;
+
     public Ogrenci(int ogrenciNo, String adSoyad) {
         super();
         this.ogrenciNo = ogrenciNo;
@@ -16,17 +17,23 @@ public class Ogrenci {
 
     }
     public int getOgrenciNo() {
-  		return ogrenciNo;
-  	}
-  	public void setOgrenciNo(int ogrenciNo) {
-  		this.ogrenciNo = ogrenciNo;
-  	}
-  	public String getAdSoyad() {
-  		return adSoyad;
-  	}
-  	public void setAdSoyad(String adSoyad) {
-  		this.adSoyad = adSoyad;
-  	}
+        return ogrenciNo;
+    }
+    public void setOgrenciNo(int ogrenciNo) {
+        this.ogrenciNo = ogrenciNo;
+    }
+    public String getAdSoyad() {
+        return adSoyad;
+    }
+    public void setAdSoyad(String adSoyad) {
+        this.adSoyad = adSoyad;
+    }
+    public List<Ders> getDersList() {
+        return dersList;
+    }
+    public void setDersList(LinkedList<Ders> dersList) {
+        this.dersList = dersList;
+    }
     public void dersEkle(Ders ders){
         dersList.add(ders);
     }
@@ -37,6 +44,4 @@ public class Ogrenci {
         }
         return false;
     }
- 
 }
-

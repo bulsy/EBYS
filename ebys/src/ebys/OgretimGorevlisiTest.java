@@ -1,33 +1,41 @@
-package ebys;
-import static org.junit.Assert.*;
-
-import java.util.Hashtable;
-
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Hashtable;
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.stub;
+
 public class OgretimGorevlisiTest {
-	
-	 private Ders ders;
-	 private Ogretmen ogretmen;
-	 private Hashtable<String, Double> yuzdeList;
 
-	@Before
-	public void SetUp(){
-		ders= new Ders(05223,"Test Driven Development","Ouz Dikenelli");
-		ogretmen = new Ogretmen(551664,"Ouz D›KENELL›");
-		yuzdeList=new Hashtable<String, Double>();
-	}
-       @Test
-        public void YuzdeBelirleme() {
-            
-            ogretmen.verilenDers(ders);
-            ogretmen.dersProjesi(ders,false,0);
-            ders.setYuzdeList(yuzdeList);
-            ogretmen.dersYuzdeBelirle(ders,0.4,"vize");
-           
-            assertEquals(0.4,yuzdeList.get("vize"), 0.0002);
-        }
-        
+    private Ders ders;
+    private OgretimGorevlisi ogretmen;
+    private Hashtable<NotTip, Double> yuzdeList;
+    private List SpyDersListesi;
+    @Before
+    public void SetUp(){
+        ders= new Ders(05223,"Test Driven Development","O√∞uz Dikenelli");
+        ogretmen = new OgretimGorevlisi(551664,"O√∞uz D√ùKENELL√ù");
+        yuzdeList=new Hashtable<NotTip, Double>();
+        SpyDersListesi= spy(List.class);
+        stub(SpyDersListesi.size()).toReturn(5);
+    }
 
+
+    @Test
+    public void YuzdeBelirleme() {
+
+        ogretmen.verilenDers(ders);
+        ogretmen.dersProjesi(ders,false,0);
+        ders.setYuzdeList(yuzdeList);
+        ogretmen.dersYuzdeBelirle(ders,0.4,NotTip.VIZE);
+
+        assertEquals(0.4,yuzdeList.get(NotTip.VIZE), 0.0002);
+    }
+    @Test
+    public void OgretmeninDersSayisi(){
+        assertEquals(5, SpyDersListesi.size());
+    }
 }
