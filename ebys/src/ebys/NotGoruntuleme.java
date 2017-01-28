@@ -1,8 +1,10 @@
+package ebys;
+
 import java.util.Hashtable;
 
 public class NotGoruntuleme {
-
-    public int notGoruntule(Ders ders,NotTip type){
+	
+	public int notGoruntule(Ders ders,NotTip type){
         Hashtable<NotTip, Integer> not=null;
         not=ders.getNotList();
         if(not.containsKey(type))

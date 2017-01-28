@@ -1,15 +1,16 @@
-import java.util.LinkedList;
+package ebys;
+import java.util.*;
 
+public class Ogretmen {
 
-public class OgretimGorevlisi {
     private String dersAdi;
     private int ogretmenNo;
     private String adSoyad;
     LinkedList<Ders> dersList;
-
-    public OgretimGorevlisi(int ogretmenNo, String adSoyad) {
+    
+    public Ogretmen(int ogretmenNo, String adSoyad) {
         super();
-
+        
         this.ogretmenNo = ogretmenNo;
         this.adSoyad = adSoyad;
         dersList= new LinkedList<Ders>();
@@ -26,9 +27,9 @@ public class OgretimGorevlisi {
         for(Ders d:dersList){
             if(d.getDersAdi()==ders.getDersAdi()){
                 if(b=true)
-                    ders.yuzdeBelirle(projeYuzdesi, NotTip.PROJE);
+                	  ders.yuzdeBelirle(projeYuzdesi,NotTip.PROJE);
                 else
-                    ders.yuzdeBelirle(0,NotTip.PROJE );
+                	  ders.yuzdeBelirle(0,NotTip.PROJE);
             }
         }
     }
@@ -42,4 +43,5 @@ public class OgretimGorevlisi {
             }
         }
     }
+  
 }

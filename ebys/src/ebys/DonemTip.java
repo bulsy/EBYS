@@ -1,6 +1,5 @@
-/**
- * Created by nagihan on 24/01/2017.
- */
+package ebys;
+
 public enum DonemTip {
-    DONEMSONU,DONEMICI;
+  DONEMICI,DONEMSONU;
 }
