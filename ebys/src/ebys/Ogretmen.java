@@ -1,23 +1,21 @@
-package ebys;
-import java.util.*;
+import java.util.LinkedList;
 
-public class Ogretmen {
 
+public class OgretimGorevlisi {
     private String dersAdi;
     private int ogretmenNo;
     private String adSoyad;
     LinkedList<Ders> dersList;
-    
-    public Ogretmen(int ogretmenNo, String adSoyad) {
+
+    public OgretimGorevlisi(int ogretmenNo, String adSoyad) {
         super();
-        
+
         this.ogretmenNo = ogretmenNo;
         this.adSoyad = adSoyad;
         dersList= new LinkedList<Ders>();
 
     }
-
-    public boolean DersAra(String dersAdi){
+    public boolean dersAra(String dersAdi){
         for (Ders d : dersList){
             if (d.getDersAdi()==dersAdi)
                 return true;
@@ -28,29 +26,19 @@ public class Ogretmen {
         for(Ders d:dersList){
             if(d.getDersAdi()==ders.getDersAdi()){
                 if(b=true)
-                    ders.setProjeYuzdesi(projeYuzdesi);
+                    ders.yuzdeBelirle(projeYuzdesi, NotTip.PROJE);
                 else
-                    ders.setProjeYuzdesi(0);
+                    ders.yuzdeBelirle(0,NotTip.PROJE );
             }
         }
     }
-
     public void verilenDers(Ders ders) {
         dersList.add(ders);
     }
-
-    public void vizeYuzdeBelirle(Ders ders, double v) {
+    public void dersYuzdeBelirle(Ders ders, double dersyuzde, NotTip type) {
         for(Ders d:dersList){
             if(d.getDersAdi()==ders.getDersAdi()){
-                ders.setVizeYuzdesi(v);
-            }
-        }
-    }
-
-    public void finalYuzdeBelirle(Ders ders, double v) {
-        for(Ders d:dersList){
-            if(d.getDersAdi()==ders.getDersAdi()){
-                ders.setFinalYuzdesi(v);
+                ders.yuzdeBelirle(dersyuzde, type);
             }
         }
     }
