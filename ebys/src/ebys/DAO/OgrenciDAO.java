@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Hashtable;
+import java.util.List;
 
 import ebys.*;
 
@@ -20,25 +21,26 @@ public class OgrenciDAO implements BaseDAO<Ogrenci> {
 	}
 	
 	@Override
-	public Ogrenci getByID(int ID) {
-		Hashtable<NotTip, Integer> NotList= new Hashtable<NotTip, Integer>();
-		Ders ders=null;
+	public Ogrenci getByID(int ID) throws ClassNotFoundException, SQLException{
+		Ogrenci ogrenci= null;
+		List<Ders> dersList=null;
 		String query= "Select * from course where id=\""+ID+"\"";
 		DBconnection(query);
 	    try {
 			while(resultSet.next()){
-				NotList.put(NotTip.VIZE, Integer.parseInt(resultSet.getString("vize")));
-				NotList.put(NotTip.PROJE, Integer.parseInt(resultSet.getString("proje")));
-				NotList.put(NotTip.FINAL, Integer.parseInt(resultSet.getString("final")));
 				String dersAdi = resultSet.getString("dersAdi");
-				String ogretmen =resultSet.getString("ogretmen");
-				ders= new Ders(ID,dersAdi,ogretmen);
-				ders.setNotList(NotList);	
+				String adSoyad =resultSet.getString("adSoyad");
+				ogrenci= new Ogrenci(ID,adSoyad);
+				while(resultSet.next()){
+					Ders ders=(Ders)resultSet.getObject("Ders");
+					dersList.add(ders);
+				}	
+				ogrenci.setDersList(dersList);
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-		return ders;
+		return ogrenci;
 		
 	}
 

@@ -30,7 +30,7 @@ public class Ogrenci {
     public List<Ders> getDersList() {
 		return dersList;
 	}
-	public void setDersList(LinkedList<Ders> dersList) {
+	public void setDersList(List<Ders> dersList) {
 		this.dersList = dersList;
 	}
 	public void dersEkle(Ders ders){
