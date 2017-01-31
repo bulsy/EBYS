@@ -32,7 +32,6 @@ public class OgretmenFakeDB implements BaseDAO<Ogretmen> {
     @Override
     public void update(Ogretmen type) {
     }
-
     @Override
     public void delete(Ogretmen type) {
 

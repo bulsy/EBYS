@@ -1,18 +1,18 @@
 package ebys;
+import java.sql.SQLException;
 import java.util.*;
 
 public class Ogrenci {
   
 	private int ogrenciNo;
     private String adSoyad;
-    
-    List<Ders> dersList;
-    
+    List<KayitliDers> dersList;
+
     public Ogrenci(int ogrenciNo, String adSoyad) {
         super();
         this.ogrenciNo = ogrenciNo;
         this.adSoyad = adSoyad;
-        dersList= new LinkedList<Ders>();
+        dersList= new ArrayList<KayitliDers>();
 
     }
     public int getOgrenciNo() {
@@ -27,22 +27,18 @@ public class Ogrenci {
   	public void setAdSoyad(String adSoyad) {
   		this.adSoyad = adSoyad;
   	}
-    public List<Ders> getDersList() {
+    public List<KayitliDers> getKayitliDersList() {
 		return dersList;
 	}
-	public void setDersList(List<Ders> dersList) {
+	public void setKayitliDersList(List<KayitliDers> dersList) {
 		this.dersList = dersList;
 	}
-	public void dersEkle(Ders ders){
+	public void dersEkle(KayitliDers ders){
         dersList.add(ders);
     }
-    public boolean dersAra(String dersAdi){
-        for (Ders d : dersList){
-            if (d.getDersAdi()==dersAdi)
-                return true;
-        }
-        return false;
-    }
+   public boolean dersAra(KayitliDers d)throws ClassNotFoundException, SQLException{
+	   return (dersList.contains(d))? true : false;
+   }
  
 }
 

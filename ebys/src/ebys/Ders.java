@@ -4,29 +4,22 @@ import java.util.*;
 public class Ders {
     private String dersAdi;
     private String ogretmen;
-    private int dersKodu; 
-    Hashtable<NotTip, Integer> NotList;
-    Hashtable<NotTip,Double> YuzdeList;
-    
+    private int dersKodu;
+    private Yuzde yuzde;
+    private List<KayitliDers> Kayitlilarlist;
+
+
     public Ders(int dersKodu, String dersAdi,String ogretmen) {
         this.dersKodu = dersKodu;
         this.dersAdi = dersAdi;
         this.ogretmen= ogretmen;
-        NotList=new Hashtable<NotTip, Integer>();
-        YuzdeList=new Hashtable<NotTip, Double>();      
+        this.yuzde=new Yuzde();
+        this.Kayitlilarlist= new ArrayList<KayitliDers>();
+
     }
-    public Hashtable<NotTip, Integer> getNotList() {
-		return NotList;
-	}
-	public void setNotList(Hashtable<NotTip, Integer> notList) {
-		NotList = notList;
-	}
-    public Hashtable<NotTip, Double> getYuzdeList() {
-		return YuzdeList;
-	}
-	public void setYuzdeList(Hashtable<NotTip, Double> yuzdeList) {
-		YuzdeList = yuzdeList;
-	}
+    public Yuzde getYuzde() {
+        return yuzde;
+    }
 	public int getDersKodu() {
         return dersKodu;
     }
@@ -39,10 +32,13 @@ public class Ders {
 	public void setDersAdi(String dersAdi) {
 		this.dersAdi = dersAdi;
 	}
-	  public void NotEkle(int dersnot, NotTip type){
-	    	NotList.put(type, dersnot);
+    public void yuzdeBelirle(Yuzde yuzde){
+		  this.yuzde=yuzde;
 	  }
-	  public void yuzdeBelirle(double dersyuzde, NotTip type){
-		  YuzdeList.put(type,dersyuzde);
-	  }
+    public List<KayitliDers> getKayitlilarlist() {
+        return Kayitlilarlist;
+    }
+    public void kayitliDersEkle(KayitliDers ders){
+        Kayitlilarlist.add(ders);
+    }
 }

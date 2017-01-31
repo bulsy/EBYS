@@ -2,6 +2,7 @@ package ebys.FakeDB;
 
 import ebys.DAO.BaseDAO;
 import ebys.KayitliDers;
+import ebys.Ogrenci;
 
 import java.util.Iterator;
 import java.util.List;
@@ -15,13 +16,15 @@ public class KayitliDersFakeDB implements BaseDAO<KayitliDers>
 
     public KayitliDersFakeDB(){}
 
-    public KayitliDers getByID(int ID,int ogrId) {
+    public KayitliDers getByID(KayitliDers kders) {
 
         KayitliDers ders;
         Iterator i=dersList.iterator();
         while (i.hasNext()) {
             ders=(KayitliDers)i.next();
-            if(ders.getDers().getDersKodu()==ID && ders.getOgrenci().getOgrenciNo()==ogrId)return ders;
+            if(ders.getDers().getDersKodu()==kders.getDers().getDersKodu()
+                    && ders.getOgrenci().getOgrenciNo()==kders.getOgrenci().getOgrenciNo())
+                return ders;
 
         }
         return null;

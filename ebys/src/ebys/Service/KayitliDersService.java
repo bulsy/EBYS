@@ -24,13 +24,13 @@ public class KayitliDersService {
         this.kayitliDersFakeDB.save(kayitliDers);
         return kayitliDers;
     }
-    public void notGuncelle(int dersKod, int ogrenciId, Not not){
-        kayitliDers=kayitliDersFakeDB.getByID(dersKod,ogrenciId);
+    public void notGuncelle(KayitliDers kders, Not not){
+        kayitliDers=kayitliDersFakeDB.getByID(kders);
         kayitliDers.setNot(not);
         kayitliDersFakeDB.update(kayitliDers);
     }
-    public KayitliDers getKayitliDers(int  dersKod,int ogrID){
-        kayitliDers=kayitliDersFakeDB.getByID(dersKod,ogrID);
+    public KayitliDers getKayitliDers(KayitliDers kders,Ogrenci ogrenci){
+        kayitliDers=kayitliDersFakeDB.getByID(kders);
         return kayitliDers;
     }
 }

@@ -2,7 +2,6 @@ package ebys;
 import java.util.*;
 
 public class Ogretmen {
-
     private String dersAdi;
     private int ogretmenNo;
     private String adSoyad;
@@ -16,32 +15,22 @@ public class Ogretmen {
         dersList= new LinkedList<Ders>();
 
     }
-    public boolean dersAra(String dersAdi){
+    public LinkedList<Ders> getDersList(){return this.dersList;}
+    public void setDersList(LinkedList<Ders> dersList){
+        this.dersList=dersList;
+    }
+    public int getOgretmenNo(){return this.ogretmenNo;}
+    public Ders dersAra(String dersAdi){
         for (Ders d : dersList){
             if (d.getDersAdi()==dersAdi)
-                return true;
+                return d;
         }
-        return false;
+        return null;
     }
-    public void dersProjesi(Ders ders,boolean b, double projeYuzdesi) {
-        for(Ders d:dersList){
-            if(d.getDersAdi()==ders.getDersAdi()){
-                if(b=true)
-                	  ders.yuzdeBelirle(projeYuzdesi,NotTip.PROJE);
-                else
-                	  ders.yuzdeBelirle(0,NotTip.PROJE);
-            }
-        }
+    public void dersEkle(Ders ders){
+        dersList.add(ders);
     }
     public void verilenDers(Ders ders) {
         dersList.add(ders);
     }
-    public void dersYuzdeBelirle(Ders ders, double dersyuzde, NotTip type) {
-        for(Ders d:dersList){
-            if(d.getDersAdi()==ders.getDersAdi()){
-                ders.yuzdeBelirle(dersyuzde, type);
-            }
-        }
-    }
-  
 }
