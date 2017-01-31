@@ -20,12 +20,12 @@ public class OgrenciFakeDB implements BaseDAO<Ogrenci>{
     }
 
     @Override
-    public Ogrenci getWithId(int ID) {
+    public Ogrenci getWithId(Ogrenci ogrenci) {
         Ogrenci ogr=null;
         Iterator i=ogrenciList.iterator();
         while (i.hasNext()) {
             ogr=(Ogrenci)i.next();
-            if(ogr.getOgrenciNo()==ID)return ogr;
+            if(ogr.getOgrenciNo()==ogrenci.getOgrenciNo())return ogr;
 
         }
         return null;

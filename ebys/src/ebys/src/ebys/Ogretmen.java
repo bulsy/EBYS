@@ -20,9 +20,9 @@ public class Ogretmen {
         this.dersList=dersList;
     }
     public int getOgretmenNo(){return this.ogretmenNo;}
-    public Ders dersAra(String dersAdi){
+    public Ders dersAra(Ders ders){
         for (Ders d : dersList){
-            if (d.getDersAdi()==dersAdi)
+            if (d.getDersAdi()==ders.getDersAdi())
                 return d;
         }
         return null;
@@ -30,7 +30,14 @@ public class Ogretmen {
     public void dersEkle(Ders ders){
         dersList.add(ders);
     }
-    public void verilenDers(Ders ders) {
-        dersList.add(ders);
+    public void DersGuncelle(Ders ders){
+        for (ListIterator<Ders> iter = dersList.listIterator(); iter.hasNext(); ) {
+            Ders element = iter.next();
+            if(element.getDersKodu()==ders.getDersKodu()){
+                dersList.remove(element);
+                dersList.add(ders);
+            }
+        }
     }
+
 }

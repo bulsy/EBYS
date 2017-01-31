@@ -3,6 +3,7 @@ package ebys.FakeDB;
 import ebys.DAO.BaseDAO;
 import ebys.KayitliDers;
 import ebys.Ogrenci;
+import org.junit.Test;
 
 import java.util.Iterator;
 import java.util.List;
@@ -16,8 +17,8 @@ public class KayitliDersFakeDB implements BaseDAO<KayitliDers>
 
     public KayitliDersFakeDB(){}
 
-    public KayitliDers getByID(KayitliDers kders) {
-
+    @Override
+    public KayitliDers getWithId(KayitliDers kders) {
         KayitliDers ders;
         Iterator i=dersList.iterator();
         while (i.hasNext()) {
@@ -51,8 +52,5 @@ public class KayitliDersFakeDB implements BaseDAO<KayitliDers>
     public void delete(KayitliDers type) {
 
     }
-    @Override
-    public KayitliDers getWithId(int ID) {
-        return null;
-    }
+
 }

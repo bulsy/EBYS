@@ -1,6 +1,7 @@
 package ebys.FakeDB;
 
 import ebys.DAO.BaseDAO;
+import ebys.Ders;
 import ebys.Ogretmen;
 
 import java.util.Iterator;
@@ -14,12 +15,12 @@ public class OgretmenFakeDB implements BaseDAO<Ogretmen> {
 
     private List<Ogretmen> ogretmenList=new Vector();
     @Override
-    public Ogretmen getWithId(int ID) {
+    public Ogretmen getWithId(Ogretmen ogr) {
        Ogretmen ogretmen=null;
         Iterator i=ogretmenList.iterator();
         while (i.hasNext()) {
             ogretmen=(Ogretmen)i.next();
-            if(ogretmen.getOgretmenNo()==ID)return ogretmen;
+            if(ogretmen.getOgretmenNo()==ogr.getOgretmenNo())return ogretmen;
 
         }
         return null;
@@ -30,7 +31,16 @@ public class OgretmenFakeDB implements BaseDAO<Ogretmen> {
     }
 
     @Override
-    public void update(Ogretmen type) {
+    public void update(Ogretmen updatedOgr) {
+        Ogretmen ogr;
+        Iterator i=ogretmenList.iterator();
+        while (i.hasNext()) {
+            ogr = (Ogretmen) i.next();
+            if (ogr.getOgretmenNo() == updatedOgr.getOgretmenNo()){
+                ogretmenList.remove(ogr);
+                ogretmenList.add(updatedOgr);
+            }
+        }
     }
     @Override
     public void delete(Ogretmen type) {

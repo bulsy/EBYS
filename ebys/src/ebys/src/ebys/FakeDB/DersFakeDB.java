@@ -17,11 +17,11 @@ public class DersFakeDB implements BaseDAO<Ders> {
     }
 
     @Override
-    public Ders getWithId(int ID) {
+    public Ders getWithId(Ders d) {
         Iterator i=dersList.iterator();
         while (i.hasNext()) {
             ders=(Ders)i.next();
-            if(ders.getDersKodu()==ID)return ders;
+            if(ders.getDersKodu()==d.getDersKodu())return ders;
         }
         return null;
     }

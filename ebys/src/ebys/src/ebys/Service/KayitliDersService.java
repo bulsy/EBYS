@@ -25,12 +25,12 @@ public class KayitliDersService {
         return kayitliDers;
     }
     public void notGuncelle(KayitliDers kders, Not not){
-        kayitliDers=kayitliDersFakeDB.getByID(kders);
+        kayitliDers=kayitliDersFakeDB.getWithId(kders);
         kayitliDers.setNot(not);
         kayitliDersFakeDB.update(kayitliDers);
     }
     public KayitliDers getKayitliDers(KayitliDers kders,Ogrenci ogrenci){
-        kayitliDers=kayitliDersFakeDB.getByID(kders);
+        kayitliDers=kayitliDersFakeDB.getWithId(kders);
         return kayitliDers;
     }
 }

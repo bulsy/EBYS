@@ -19,14 +19,16 @@ public class DersService {
         this.dersFakeDB = dersFakeDB;
     }
 
-    public void dersYuzdeGuncelleme(int id, Yuzde yuzde){
-        ders=dersFakeDB.getWithId(id);
+    public void dersYuzdeGuncelleme(Ders ders, Yuzde yuzde){
         ders.yuzdeBelirle(yuzde);
         dersFakeDB.update(ders);
     }
-    public Ders getDers(int  dersKod){
-        ders=dersFakeDB.getWithId(dersKod);
+    public Ders getDers(Ders ders){
+        ders=dersFakeDB.getWithId(ders);
         return ders;
+    }
+    public void AddDers(Ders ders){
+        dersFakeDB.save(ders);
     }
 
 
